@@ -1,0 +1,9 @@
+A simple system to prevent forgetting important items, consisting of
+	an rfid transmitter and receiver -- 3
+	a piezo buzzer -- 1
+	an OLED display -- 3
+	lit buttons to determine responses to the prompts -- 2
+	an RGB LED used to communicate state at a glance -- 2
+	a magnetic switch to determine if the door is open or closed -- 1
+
+The system detercts the presence of or abscence of keys or any important item using the RFID tag, and provides an audio-visual alert to the user.  The user then is able to check the screen to  determine what they may or may not be forgetting.  Their response is then provided using the buttons, allowing them to silence the alert and ignore it, or return, grab the item, and have it check again.
