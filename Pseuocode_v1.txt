@@ -1,0 +1,24 @@
+Setup all the guff
+Watch this space!
+
+Loop
+	If the door is opened, then while it is open-
+		Check to see if an rfid tag is nearby.
+			If it is, check what card it is, if there is no tag, continue, then
+				Determine which of the cards have not been detected yet.
+					If all cards have been, report that all is well
+						Say so on the screen
+						Turn the LED green
+					If they have not, report that fact.
+						Say what has not yet been detected on the screen.
+						Turn the LED red
+						Sound the buzzer
+						Check if the user has pressed the button.
+							If they have, state that the alert has been ignored.
+								Say this on screen.
+								Turn the LED amber
+								Turn off the buzzer.
+							If they have not, return to checking to see if an rfid tag is nearby.
+	Else if the door is closed, return to a standby state.
+	Else do nothing.
+Return
