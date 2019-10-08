@@ -47,6 +47,7 @@ void setup() {
   SPI.begin(); // initialize I2C bus
   rfid.PCD_Init(); // initialize the rfid reader
   lcd.begin(16, 2); // initialize the LCD with its number of columns and rows
+  lcd.setCursor(0,0);
   
   pinMode(BUZZER, OUTPUT); //buzzer pin init
 
@@ -74,7 +75,8 @@ void loop() {
     {
       //Serial.println("Case 1");
       lcd.clear();
-      lcd.print("No items detected!");
+      lcd.setCursor(0,0);
+      lcd.print("Nothing's here!");
       buzzAlert(50);
       ledColor(3);
       delay(200);
@@ -83,7 +85,10 @@ void loop() {
     {
       //Serial.println("Case 2");
       lcd.clear();
-      lcd.print("Item 1 is present! Item 2 is missing!");
+      lcd.setCursor(0,0);
+      lcd.print("Item 1 is here!");
+      lcd.setCursor(0,1);
+      lcd.print("Item 2 is not!");
       buzzAlert(50);
       ledColor(3);
       delay(200);
@@ -92,7 +97,10 @@ void loop() {
     {
       //Serial.println("Case 3");
       lcd.clear();
-      lcd.print("Item 2 is present! Item 1 is missing!");
+      lcd.setCursor(0,0);
+      lcd.print("Item 2 is here!");
+      lcd.setCursor(0,1);
+      lcd.print("Item 1 is not!");
       buzzAlert(50);
       ledColor(3);
       delay(200);
@@ -101,7 +109,10 @@ void loop() {
     {
       //Serial.println("Case 4");
       lcd.clear();
-      lcd.print("Both items are present!");
+      lcd.setCursor(0,0);
+      lcd.print("Both items are");
+      lcd.setCursor(0,1);
+      lcd.print("here!");
       buzzAlert(0);
       ledColor(1);
       delay(200);
@@ -113,7 +124,8 @@ void loop() {
     if(alarmOverride == true)
     {
       lcd.clear();
-      lcd.print("Alarm overridden!");
+      lcd.setCursor(0,0);
+      lcd.print("Alarm bypassed!");
       buzzAlert(0);
       ledColor(2);
       delay(200);
