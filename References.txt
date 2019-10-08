@@ -1,1 +1,2 @@
 http://educ8s.tv/arduino-rfid-tutorial/ -- 2019-09-24
+http://cjparish.blogspot.com/2010/01/controlling-lcd-display-with-shift.html -- 2019-10-01

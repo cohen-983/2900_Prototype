@@ -9,6 +9,12 @@
 #define SERIAL_CLOCK 4
 #define RESET_CLOCK 3
 
+#define LED_R 14
+#define LED_G 15
+#define LED_B 16
+
+#define BUZZER 6
+
 MFRC522 rfid(SS_PIN, RST_PIN); //instance of the RFID reader object
 
 MFRC522::MIFARE_Key key;
@@ -22,6 +28,7 @@ ShiftLCD lcd(SERIAL_DATA, SERIAL_CLOCK, RESET_CLOCK); //initialize the LCD with 
 
 void readRFID(); //function prototypes
 void printDec();
+void buzzAlert(int x); //this one only really exists for contraining values and ease of reading
 
 void setup()
 {
@@ -29,6 +36,11 @@ void setup()
   SPI.begin(); // initialize I2C bus
   rfid.PCD_Init(); // initialize the rfid reader
   lcd.begin(16, 2); // initialize the LCD with its number of columns and rows
+  
+  pinMode(BUZZER, OUTPUT);
+  pinMode(LED_R, OUTPUT);
+  pinMode(LED_G, OUTPUT);
+  pinMode(LED_B, OUTPUT);
 }
 
 void loop() {
@@ -109,4 +121,10 @@ void printDec(byte *buffer, byte bufferSize) {
     Serial.print(buffer[i] < 0x10 ? " 0" : " ");
     Serial.print(buffer[i], DEC);
   }
+}
+
+void buzzAlert(int x) { //given a volume value between 0 and 100, sounds the buzzer
+  int y = constrain(x, 0, 100);
+  y = map(y, 0, 100, 0, 255);
+  analogWrite(BUZZER, y);
 }
