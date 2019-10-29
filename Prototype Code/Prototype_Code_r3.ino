@@ -1,6 +1,6 @@
 #include <MFRC522.h>
 #include <SPI.h>
-#include <ShiftLCD.h>
+#include <ShiftLCD.h> //See reference [3]
 
 #define SS_PIN 10
 #define RST_PIN 9
@@ -18,9 +18,9 @@
 #define BUTTON 19
 #define SWITCH 18
 
-MFRC522 rfid(SS_PIN, RST_PIN); //instance of the RFID reader object
+MFRC522 rfid(SS_PIN, RST_PIN); //instance of the RFID reader object [2]
 
-MFRC522::MIFARE_Key key;
+MFRC522::MIFARE_Key key; //[2]
 
 int uidCode1[] = {105,52,80,71}; //initialize array to store uid value
 int uidCode2[] = {203,133,44,11}; //initialize array to store uid value
@@ -143,7 +143,7 @@ void loop() {
   delay(50); //wait before checking the switch for a kind of janky debounce.
 }
 
-void readRFID() {
+void readRFID() { //A great deal of the initial code in this function and its subfunctions are from reference [2].
   
   rfid.PICC_ReadCardSerial();
   Serial.print(F("\nPICC type: "));
@@ -214,7 +214,7 @@ void printDec(byte *buffer, byte bufferSize) {
     Serial.print(buffer[i] < 0x10 ? " 0" : " ");
     Serial.print(buffer[i], DEC);
   }
-}
+} // after this point, all code is more or less original.
 
 void buzzAlert(int x) { //given a volume value between 0 and 100, sounds the buzzer
   int y = constrain(x, 0, 100);
